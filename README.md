@@ -1,10 +1,8 @@
 # ML Kit Demo in Flutter
 
-This is a demo of Google's ML Kit API for Flutter.  
-For more info about the ML Kit,
-visit [ML Kit documentation](https://developers.google.com/ml-kit)  
-For more info about the Flutter,
-visit [Flutter documentation](https://flutter.dev)
+![](https://img.shields.io/badge/flutter-3.0.2-blue)
+
+This is a demo of Google's ML Kit API for Flutter.
 
 ## Features
 
@@ -34,3 +32,12 @@ Once you have Flutter installed, to run the project:
 ```dart
 flutter run
 ```
+
+## Resources
+For more info about the ML Kit,
+visit [ML Kit documentation](https://developers.google.com/ml-kit)  
+For more info about the Flutter,
+visit [Flutter documentation](https://flutter.dev)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
