@@ -25,29 +25,27 @@ class _SmartReplyDemoState extends State<SmartReplyDemo> {
       body: Column(
         children: [
           Expanded(
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ListView.builder(
-                    controller: _listViewController,
-                    physics: const BouncingScrollPhysics(),
-                    reverse: true,
-                    itemBuilder: (context, index) => MessageListItem(message: messages[index]),
-                    itemCount: messages.length,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SmartReplies(
-                    onReplyTap: _onReplyTap,
-                    replies: replies,
-                  ),
-                )
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ListView.builder(
+                controller: _listViewController,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                reverse: true,
+                itemBuilder: (context, index) => MessageListItem(message: messages[index]),
+                itemCount: messages.length,
+              ),
             ),
           ),
           const Divider(),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            height: replies.isNotEmpty ? 25.0 : 0.0,
+            child: SmartReplies(
+              onReplyTap: _onReplyTap,
+              replies: replies,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -148,9 +146,9 @@ class SmartReplies extends StatelessWidget {
     return Wrap(
       spacing: 8.0,
       children: replies
-          .map((reply) => InkWell(
-                onTap: () => onReplyTap(reply),
-                child: Chip(label: Text(reply)),
+          .map((reply) => ActionChip(
+                label: Text(reply),
+                onPressed: () => onReplyTap(reply),
               ))
           .toList(),
     );
@@ -165,7 +163,10 @@ class MessageListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 14,
+        vertical: 10,
+      ),
       child: Align(
         alignment: (message.isLocalUser ? Alignment.topRight : Alignment.topLeft),
         child: Container(
