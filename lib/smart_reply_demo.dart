@@ -127,6 +127,7 @@ class _SmartReplyDemoState extends State<SmartReplyDemo> {
   void dispose() {
     _inputTextController.dispose();
     _listViewController.dispose();
+    smartReply.close();
     super.dispose();
   }
 }
